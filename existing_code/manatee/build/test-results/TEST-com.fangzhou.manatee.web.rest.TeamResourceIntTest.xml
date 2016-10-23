@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.fangzhou.manatee.web.rest.TeamResourceIntTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2016-10-12T15:09:18" hostname="Fangzhous-MacBook-Pro.local" time="0.079">
+  <properties/>
+  <testcase name="getAllTeams" classname="com.fangzhou.manatee.web.rest.TeamResourceIntTest" time="0.012"/>
+  <testcase name="updateTeam" classname="com.fangzhou.manatee.web.rest.TeamResourceIntTest" time="0.008"/>
+  <testcase name="getTeam" classname="com.fangzhou.manatee.web.rest.TeamResourceIntTest" time="0.005"/>
+  <testcase name="getNonExistingTeam" classname="com.fangzhou.manatee.web.rest.TeamResourceIntTest" time="0.003"/>
+  <testcase name="createTeam" classname="com.fangzhou.manatee.web.rest.TeamResourceIntTest" time="0.005"/>
+  <testcase name="deleteTeam" classname="com.fangzhou.manatee.web.rest.TeamResourceIntTest" time="0.005"/>
+  <system-out><![CDATA[Hibernate: insert into team (id, friday, max_patients, monday, name, organization, saturday, specialty, sunday, thursday, tuesday, wednesday) values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2016-10-12 10:09:18.820 DEBUG 1207 --- [    Test worker] c.f.manatee.web.rest.TeamResource        : REST request to get all Teams
+Hibernate: select team0_.id as id1_11_, team0_.friday as friday2_11_, team0_.max_patients as max_pati3_11_, team0_.monday as monday4_11_, team0_.name as name5_11_, team0_.organization as organiza6_11_, team0_.saturday as saturday7_11_, team0_.specialty as specialt8_11_, team0_.sunday as sunday9_11_, team0_.thursday as thursda10_11_, team0_.tuesday as tuesday11_11_, team0_.wednesday as wednesd12_11_ from team team0_
+Hibernate: insert into team (id, friday, max_patients, monday, name, organization, saturday, specialty, sunday, thursday, tuesday, wednesday) values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: select team0_.id as id1_11_, team0_.friday as friday2_11_, team0_.max_patients as max_pati3_11_, team0_.monday as monday4_11_, team0_.name as name5_11_, team0_.organization as organiza6_11_, team0_.saturday as saturday7_11_, team0_.specialty as specialt8_11_, team0_.sunday as sunday9_11_, team0_.thursday as thursda10_11_, team0_.tuesday as tuesday11_11_, team0_.wednesday as wednesd12_11_ from team team0_
+2016-10-12 10:09:18.840 DEBUG 1207 --- [    Test worker] c.f.manatee.web.rest.TeamResource        : REST request to update Team : Team{id=2, organization='BBBBB', name='BBBBB', specialty='BBBBB', maxPatients='2', monday='2', tuesday='2', wednesday='2', thursday='2', friday='2', saturday='2', sunday='2'}
+Hibernate: update team set friday=?, max_patients=?, monday=?, name=?, organization=?, saturday=?, specialty=?, sunday=?, thursday=?, tuesday=?, wednesday=? where id=?
+Hibernate: select team0_.id as id1_11_, team0_.friday as friday2_11_, team0_.max_patients as max_pati3_11_, team0_.monday as monday4_11_, team0_.name as name5_11_, team0_.organization as organiza6_11_, team0_.saturday as saturday7_11_, team0_.specialty as specialt8_11_, team0_.sunday as sunday9_11_, team0_.thursday as thursda10_11_, team0_.tuesday as tuesday11_11_, team0_.wednesday as wednesd12_11_ from team team0_
+Hibernate: insert into team (id, friday, max_patients, monday, name, organization, saturday, specialty, sunday, thursday, tuesday, wednesday) values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2016-10-12 10:09:18.853 DEBUG 1207 --- [    Test worker] c.f.manatee.web.rest.TeamResource        : REST request to get Team : 3
+2016-10-12 10:09:18.866 DEBUG 1207 --- [    Test worker] c.f.manatee.web.rest.TeamResource        : REST request to get Team : 9223372036854775807
+Hibernate: select team0_.id as id1_11_0_, team0_.friday as friday2_11_0_, team0_.max_patients as max_pati3_11_0_, team0_.monday as monday4_11_0_, team0_.name as name5_11_0_, team0_.organization as organiza6_11_0_, team0_.saturday as saturday7_11_0_, team0_.specialty as specialt8_11_0_, team0_.sunday as sunday9_11_0_, team0_.thursday as thursda10_11_0_, team0_.tuesday as tuesday11_11_0_, team0_.wednesday as wednesd12_11_0_ from team team0_ where team0_.id=?
+Hibernate: select team0_.id as id1_11_, team0_.friday as friday2_11_, team0_.max_patients as max_pati3_11_, team0_.monday as monday4_11_, team0_.name as name5_11_, team0_.organization as organiza6_11_, team0_.saturday as saturday7_11_, team0_.specialty as specialt8_11_, team0_.sunday as sunday9_11_, team0_.thursday as thursda10_11_, team0_.tuesday as tuesday11_11_, team0_.wednesday as wednesd12_11_ from team team0_
+2016-10-12 10:09:18.878 DEBUG 1207 --- [    Test worker] c.f.manatee.web.rest.TeamResource        : REST request to save Team : Team{id=null, organization='AAAAA', name='AAAAA', specialty='AAAAA', maxPatients='1', monday='1', tuesday='1', wednesday='1', thursday='1', friday='1', saturday='1', sunday='1'}
+Hibernate: insert into team (id, friday, max_patients, monday, name, organization, saturday, specialty, sunday, thursday, tuesday, wednesday) values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: select team0_.id as id1_11_, team0_.friday as friday2_11_, team0_.max_patients as max_pati3_11_, team0_.monday as monday4_11_, team0_.name as name5_11_, team0_.organization as organiza6_11_, team0_.saturday as saturday7_11_, team0_.specialty as specialt8_11_, team0_.sunday as sunday9_11_, team0_.thursday as thursda10_11_, team0_.tuesday as tuesday11_11_, team0_.wednesday as wednesd12_11_ from team team0_
+Hibernate: insert into team (id, friday, max_patients, monday, name, organization, saturday, specialty, sunday, thursday, tuesday, wednesday) values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: select team0_.id as id1_11_, team0_.friday as friday2_11_, team0_.max_patients as max_pati3_11_, team0_.monday as monday4_11_, team0_.name as name5_11_, team0_.organization as organiza6_11_, team0_.saturday as saturday7_11_, team0_.specialty as specialt8_11_, team0_.sunday as sunday9_11_, team0_.thursday as thursda10_11_, team0_.tuesday as tuesday11_11_, team0_.wednesday as wednesd12_11_ from team team0_
+2016-10-12 10:09:18.892 DEBUG 1207 --- [    Test worker] c.f.manatee.web.rest.TeamResource        : REST request to delete Team : 5
+Hibernate: delete from team where id=?
+Hibernate: select team0_.id as id1_11_, team0_.friday as friday2_11_, team0_.max_patients as max_pati3_11_, team0_.monday as monday4_11_, team0_.name as name5_11_, team0_.organization as organiza6_11_, team0_.saturday as saturday7_11_, team0_.specialty as specialt8_11_, team0_.sunday as sunday9_11_, team0_.thursday as thursda10_11_, team0_.tuesday as tuesday11_11_, team0_.wednesday as wednesd12_11_ from team team0_
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

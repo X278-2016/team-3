@@ -1,0 +1,76 @@
+<div>
+    <h2>Teams</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="team.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Team
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Organization</span></th>
+                    <th><span>Name</span></th>
+                    <th><span>Specialty</span></th>
+                    <th><span>Max Patients</span></th>
+                    <th><span>Monday</span></th>
+                    <th><span>Tuesday</span></th>
+                    <th><span>Wednesday</span></th>
+                    <th><span>Thursday</span></th>
+                    <th><span>Friday</span></th>
+                    <th><span>Saturday</span></th>
+                    <th><span>Sunday</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="team in vm.teams track by team.id">
+                    <td><a ui-sref="team-detail({id:team.id})">{{team.id}}</a></td>
+                    <td>{{team.organization}}</td>
+                    <td>{{team.name}}</td>
+                    <td>{{team.specialty}}</td>
+                    <td>{{team.maxPatients}}</td>
+                    <td>{{team.monday}}</td>
+                    <td>{{team.tuesday}}</td>
+                    <td>{{team.wednesday}}</td>
+                    <td>{{team.thursday}}</td>
+                    <td>{{team.friday}}</td>
+                    <td>{{team.saturday}}</td>
+                    <td>{{team.sunday}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="team-detail({id:team.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="team.edit({id:team.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="team.delete({id:team.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

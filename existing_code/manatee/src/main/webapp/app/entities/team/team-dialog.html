@@ -1,0 +1,121 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myTeamLabel">Create or edit a Team</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.team.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.team.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_organization">Organization</label>
+            <input type="text" class="form-control" name="organization" id="field_organization"
+                    ng-model="vm.team.organization"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="vm.team.name"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_specialty">Specialty</label>
+            <input type="text" class="form-control" name="specialty" id="field_specialty"
+                    ng-model="vm.team.specialty"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_maxPatients">Max Patients</label>
+            <input type="number" class="form-control" name="maxPatients" id="field_maxPatients"
+                    ng-model="vm.team.maxPatients"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="field_custom">Custom Max</label>
+            <div class="row">
+                <div class="col-sm-2"><input type="number" class="form-control" name="monday" id="field_monday"
+                    ng-model="vm.team.monday" placeholder="Monday"
+                     /></div>
+                <div class="col-sm-2"><input type="number" class="form-control" name="tuesday" id="field_tuesday"
+                    ng-model="vm.team.tuesday" placeholder="Tuesday"
+                     /></div>
+                <div class="col-sm-2"><input type="number" class="form-control" name="wednesday" id="field_wednesday"
+                    ng-model="vm.team.wednesday" placeholder="Wednesday"
+                     /></div>
+                <div class="col-sm-2"><input type="number" class="form-control" name="thursday" id="field_thursday"
+                    ng-model="vm.team.thursday" placeholder="Thursday"
+                     /></div>
+                <div class="col-sm-2"><input type="number" class="form-control" name="friday" id="field_friday"
+                    ng-model="vm.team.friday" placeholder="Friday"
+                     /></div>
+                <div class="col-sm-2"><input type="number" class="form-control" name="saturday" id="field_saturday"
+                    ng-model="vm.team.saturday" placeholder="Saturday"
+                     /></div>
+                <div class="col-sm-2"><input type="number" class="form-control" name="sunday" id="field_sunday"
+                    ng-model="vm.team.sunday" placeholder="Sunday"
+                     /></div>
+            </div>
+        </dd>
+
+<!-- 
+        <div class="form-group">
+            <label class="control-label" for="field_monday">Monday</label>
+            <input type="number" class="form-control" name="monday" id="field_monday"
+                    ng-model="vm.team.monday"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_tuesday">Tuesday</label>
+            <input type="number" class="form-control" name="tuesday" id="field_tuesday"
+                    ng-model="vm.team.tuesday"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_wednesday">Wednesday</label>
+            <input type="number" class="form-control" name="wednesday" id="field_wednesday"
+                    ng-model="vm.team.wednesday"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_thursday">Thursday</label>
+            <input type="number" class="form-control" name="thursday" id="field_thursday"
+                    ng-model="vm.team.thursday"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_friday">Friday</label>
+            <input type="number" class="form-control" name="friday" id="field_friday"
+                    ng-model="vm.team.friday"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_saturday">Saturday</label>
+            <input type="number" class="form-control" name="saturday" id="field_saturday"
+                    ng-model="vm.team.saturday"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_sunday">Sunday</label>
+            <input type="number" class="form-control" name="sunday" id="field_sunday"
+                    ng-model="vm.team.sunday"
+                     />
+        </div> -->
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>
