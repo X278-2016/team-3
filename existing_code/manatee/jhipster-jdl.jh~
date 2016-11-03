@@ -1,0 +1,56 @@
+entity Staff {
+	name String,
+    role String,
+}
+
+entity Team {
+	organization String,
+    name String,
+    specialty String,
+    maxPatients Long,
+    monday Long,
+    tuesday Long,
+    wednesday Long,
+    thursday Long,
+    friday Long,
+    saturday Long,
+    sunday Long,
+}
+
+entity ReferralSource {
+	name String,
+    contact String,
+}
+
+entity Queue {
+	status String,
+    timestampInitial ZonedDateTime,
+    timestampFinal ZonedDateTime,
+}
+
+entity Patient {
+	name String,
+    medicalReferralID String,
+    age Long,
+    conditionDesciption String,
+    priority String,
+    deadline ZonedDateTime
+}
+
+entity QuickInfo {
+	mrn Long,
+    lName String,
+    fInitial String,
+    roomNum Long
+}
+
+relationship ManyToOne {
+	Patient{referralSource} to ReferralSource,
+    Queue{patient} to Patient,
+    Queue{team} to Team,
+   	Staff{team} to Team
+}
+
+relationship OneToOne {
+    QuickInfo{name} to Patient{name}
+}

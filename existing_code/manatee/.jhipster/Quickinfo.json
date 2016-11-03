@@ -1,0 +1,35 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "patient",
+            "otherEntityName": "patient",
+            "relationshipType": "one-to-one",
+            "relationshipValidateRules": [],
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "quickinfo"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "mrn",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "roomNum",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20161103193328",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "quickinfo",
+    "pagination": "no"
+}
