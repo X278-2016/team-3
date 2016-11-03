@@ -27,7 +27,7 @@
             var arrayPatientTeam = [];
             var arrayPotentialDischargedPatient = [];
             Team.query(function(result) {
-                for (var i in result) {                    
+                for (var i in result) {
                     if(typeof result[i] ==="object")
                         if ('name' in result[i]) {
                             arrayTeam.push({'id':result[i]['id'], 'name': result[i]['name'], 'space': get_max_for_today(result[i]), 'progressbarid':'progressbar-'+result[i]['id'] });
@@ -36,12 +36,14 @@
                             // console.log(result[i]['name']);
                             // console.log(get_max_for_today(result[i]));
                         }
-                }  
-                
+                }
+
                 Queue.query(function(result) {
                     for (var i in result) {
                         if(typeof result[i] ==="object")
-                            if ('team' in result[i]) 
+                            console.log(result[i]);
+                            if (result[i] !== false && result[i] !== true && 'team' in result[i])
+                                //console.log(result[i]['team']);
                                 if ('name' in result[i]['team']) {
                                     for (var j in arrayTeam) {
                                         if (arrayTeam[j]['name'] ==result[i]['team']['name']) {
@@ -67,7 +69,7 @@
                                             } else {
                                                 tmp['status'] = 0;
                                             }
-                                            
+
                                             arrayPatientTeam[j].push(tmp);
                                         }
                                     }
@@ -92,7 +94,7 @@
                     $scope.teams = arrayTeam;
                     $scope.arrayPatientTeam = arrayPatientTeam;
                     $scope.arrayPotentialDischargedPatient = arrayPotentialDischargedPatient;
-                    
+
                 });
             });
         };
@@ -114,7 +116,7 @@
         $scope.updateTeam = function(queueID, teamID) {
             console.log("queueID, teamID:"+ queueID+"|"+ teamID);
             Queue.get({id: queueID}, function(queueResult) {
-                
+
                 Team.get({id : teamID}, function(teamResult) {
                     // console.log(teamResult);
                     queueResult.team=teamResult;
@@ -171,6 +173,6 @@
                 $('#deleteQueueConfirmation').modal('show');
             });
         };
-        
+
     }
 })();
