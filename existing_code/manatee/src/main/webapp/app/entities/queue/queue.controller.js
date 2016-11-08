@@ -5,9 +5,9 @@
         .module('manateeApp')
         .controller('QueueController', QueueController);
 
-    QueueController.$inject = ['$scope', '$state', 'Queue', 'ChatService', 'Team'];
+    QueueController.$inject = ['$scope', '$state', 'Queue', 'ChatService', 'Team', 'Staff'];
 
-    function QueueController ($scope, $state, Queue, ChatService, Team) {
+    function QueueController ($scope, $state, Queue, ChatService, Team, Staff) {
         var vm = this;
         $scope.queues = [];
 
@@ -172,5 +172,32 @@
             });
         };
         
+        $scope.showPopover = function(team) {
+            if (team && "id" in team && team['id']) {
+                var teamID = team['id'];
+                var content_to_show = "";
+                Team.get({id : teamID}, function(teamResult) {
+                    content_to_show+="Team Name:\n - "+ teamResult['name']+"\nTeam Cap:\n - "+teamResult['maxPatients']+"\nTeam Members:\n";
+                    console.log(teamResult);
+
+                    Staff.query(function(result) {
+                        for (var i in result) { 
+                            if (typeof result[i] ==="object"  && 'team' in result[i] && result[i] && result[i]['team']['id']==teamID)
+                                if("name" in result[i] && "role" in result[i] ) {
+                                    content_to_show += " - Name: " + result[i]['name'] + " | Role:" + result[i]['role'];
+                                }
+                        }
+                        $scope.popupContent = content_to_show;
+                    });
+                    $scope.popupContent = content_to_show;
+                });
+            }
+            $scope.popoverIsVisible = true; 
+        };
+
+        $scope.hidePopover = function () {
+          $scope.popoverIsVisible = false;
+          $scope.popupContent = "";
+        };
     }
 })();

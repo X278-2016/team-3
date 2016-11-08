@@ -60,11 +60,18 @@
     </div>
     
     <div id="content-main">
+        <div class="popup-container"  ng-show="popoverIsVisible" >
+            <div class="central-popup" ng-show="popoverIsVisible" >{{popupContent}}</div>
+            </div>
         <div class="container">
+
+
             <div class="row">
                 <div class="col-sm-4 queue"  ng-repeat="patientTeam in arrayPatientTeam" ng-init="$last && activateJQueryUI( )">
                     <div class="queue-content">
-                        <p class="queue-title">{{teams[arrayPatientTeam.indexOf(patientTeam)].name}}</p>
+                        <p class="queue-title" ng-mouseover="showPopover(teams[arrayPatientTeam.indexOf(patientTeam)])" ng-mouseleave="hidePopover()">{{teams[arrayPatientTeam.indexOf(patientTeam)].name}}</p>
+                        <!-- <div ng-mouseover="showPopover()" ng-mouseleave="hidePopover()">more info</div>
+                        <div class="popover" ng-show="popoverIsVisible">Popover Content</div> -->
                         <table style="width: 100%; border-collapse: collapse;">
                             <thead class="connectedSortable-head" ng-switch on="teams[arrayPatientTeam.indexOf(patientTeam)].name">
                                 <tr>
