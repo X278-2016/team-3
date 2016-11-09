@@ -31,5 +31,6 @@
     "dto": "no",
     "service": "no",
     "entityTableName": "quickinfo",
-    "pagination": "no"
+    "pagination": "no",
+    "enableEntityAudit": false
 }
