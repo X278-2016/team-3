@@ -4,7 +4,7 @@
 
 <div class="content-header">
     <div class="title">
-    Queues 
+    Queues
     </div>
     <div class="control-button">
         <button class="navigation-btn" ui-sref="queue.new" style="float:left;">
@@ -15,7 +15,7 @@
                 </button>
     </div>
 
-</div> 
+</div>
 
 <div class="content-content-wrapper">
     <div id="content-sidebar">
@@ -24,7 +24,7 @@
         </div>
         <ui class="sidebar-connectedSortable">
             <li ng-repeat="team in teams" >
-                <div class="my-progress-bar" id={{team.progressbarid}}></div>     
+                <div class="my-progress-bar" id={{team.progressbarid}}></div>
                 <div class="queue-title"><p>{{team.name}}</p></div>
                 {{activateProgressBar(team.progressbarid, team.occupation, team.progressbarText)}}
             </li>
@@ -58,7 +58,7 @@
             </li>
         </ui> -->
     </div>
-    
+
     <div id="content-main">
         <div class="popup-container"  ng-show="popoverIsVisible" >
             <div class="central-popup" ng-show="popoverIsVisible" >{{popupContent}}</div>
@@ -82,6 +82,7 @@
                                     <th ng-switch-when="Outside hospital - in transit" style="width: 10%">Countdown</th>
                                     <th style="width: 10%">MRID</th>
                                     <th style="width: 10%">Name</th>
+                                    <th style="width: 10%">Edit</th>
                                 </tr>
                             </thead>
                             <tbody  id={{teams[arrayPatientTeam.indexOf(patientTeam)].id}} class="connectedSortable queueTable">
@@ -91,7 +92,8 @@
                                     <td ng-switch-when="Outside hospital - in transit" style="width: 10%"><div ng-show="patientItem.timestampDue <= 0"></div> <div ng-show="patientItem.timestampDue > 0"><timer end-time="patientItem.timestampDue">{{ddays}}:{{hhours}}:{{mminutes}}:{{sseconds}}</timer>
                                     </td>
                                     <td style="width: 10%" >{{patientItem.patient.medicalReferralId}}</td>
-                                    <td style="width: 10%"><a ui-sref="queue.edit({id:patientItem.id})">{{patientItem.patient.name}}</a></td>
+                                    <td style="width: 10%" ><a ui-sref="patient-detail({id:patientItem.id})">{{patientItem.patient.name}}</a></td>
+                                    <td style="width: 10%"><a ui-sref="queue.edit({id:patientItem.id})">Edit</a></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -104,7 +106,7 @@
 
 </div>
 
-<!-- 
+<!--
 <div>
     <h2>Queues</h2>
     <jhi-alert></jhi-alert>
