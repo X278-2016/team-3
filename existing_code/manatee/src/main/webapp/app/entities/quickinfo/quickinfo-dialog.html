@@ -17,19 +17,23 @@
             <label class="control-label" for="field_mrn">Mrn</label>
             <input type="number" class="form-control" name="mrn" id="field_mrn"
                     ng-model="vm.quickinfo.mrn"
-                     />
+                    required />
+            <div ng-show="editForm.mrn.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.mrn.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.mrn.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
         </div>
         <div class="form-group">
             <label class="control-label" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
                     ng-model="vm.quickinfo.name"
-                    required />
-            <div ng-show="editForm.name.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.name.$error.required">
-                    This field is required.
-                </p>
-            </div>
+                     />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_roomNum">Room Num</label>

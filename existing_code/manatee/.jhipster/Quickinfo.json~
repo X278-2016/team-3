@@ -13,14 +13,14 @@
     "fields": [
         {
             "fieldName": "mrn",
-            "fieldType": "Long",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "Long"
         },
         {
             "fieldName": "name",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "roomNum",
@@ -32,5 +32,5 @@
     "service": "no",
     "entityTableName": "quickinfo",
     "pagination": "no",
-    "enableEntityAudit": true
+    "enableEntityAudit": false
 }

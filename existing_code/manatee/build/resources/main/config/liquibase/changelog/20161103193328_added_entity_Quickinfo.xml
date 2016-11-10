@@ -22,11 +22,11 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="mrn" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
             
             <column name="name" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
             
             <column name="room_num" type="bigint">
@@ -35,6 +35,14 @@
                         <column name="patient_id" type="bigint">
                 <constraints unique="true" nullable="true" />
             </column>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp" defaultValueDate="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
         

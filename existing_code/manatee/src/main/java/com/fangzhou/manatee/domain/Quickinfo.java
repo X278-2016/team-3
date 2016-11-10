@@ -14,7 +14,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "quickinfo")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Quickinfo implements Serializable {
+public class Quickinfo extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,11 +22,11 @@ public class Quickinfo implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "mrn")
+    @NotNull
+    @Column(name = "mrn", nullable = false)
     private Long mrn;
 
-    @NotNull
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
     @Column(name = "room_num")

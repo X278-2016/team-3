@@ -104,10 +104,10 @@ public class QuickinfoResourceIntTest {
 
     @Test
     @Transactional
-    public void checkNameIsRequired() throws Exception {
+    public void checkMrnIsRequired() throws Exception {
         int databaseSizeBeforeTest = quickinfoRepository.findAll().size();
         // set the field null
-        quickinfo.setName(null);
+        quickinfo.setMrn(null);
 
         // Create the Quickinfo, which fails.
 
