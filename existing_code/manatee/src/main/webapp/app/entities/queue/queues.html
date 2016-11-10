@@ -69,9 +69,12 @@
             <div class="row">
                 <div class="col-sm-4 queue"  ng-repeat="patientTeam in arrayPatientTeam" ng-init="$last && activateJQueryUI( )">
                     <div class="queue-content">
-                        <p class="queue-title" ng-mouseover="showPopover(teams[arrayPatientTeam.indexOf(patientTeam)])" ng-mouseleave="hidePopover()">{{teams[arrayPatientTeam.indexOf(patientTeam)].name}}</p>
-                        <!-- <div ng-mouseover="showPopover()" ng-mouseleave="hidePopover()">more info</div>
-                        <div class="popover" ng-show="popoverIsVisible">Popover Content</div> -->
+                        <!-- <p class="queue-title" ng-mouseover="showPopover(teams[arrayPatientTeam.indexOf(patientTeam)])" ng-mouseleave="hidePopover()">{{teams[arrayPatientTeam.indexOf(patientTeam)].name}}</p> -->
+                        <p>
+                            <span class="queue-title">{{teams[arrayPatientTeam.indexOf(patientTeam)].name}}</span>
+                            <span class="title-button" ng-mouseover="showPopover_team(teams[arrayPatientTeam.indexOf(patientTeam)])" ng-mouseleave="hidePopover()">Details</span>
+                            <span class="title-button" ui-sref="team-detail({id:teams[arrayPatientTeam.indexOf(patientTeam)].id})">History</span>
+                        </p>
                         <table style="width: 100%; border-collapse: collapse;">
                             <thead class="connectedSortable-head" ng-switch on="teams[arrayPatientTeam.indexOf(patientTeam)].name">
                                 <tr>
