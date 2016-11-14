@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('manateeApp')
+        .module('manateeApp', ['ngJsonExportExcel'])
         .controller('PatientDetailController', PatientDetailController);
 
-    PatientDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'entity', 'Patient', 'ReferralSource', 'EntityAuditService'];
+    PatientDetailController.$inject = ['$scope', '$rootScope','$stateProvider', '$stateParams', 'entity', 'Patient', 'ReferralSource', 'EntityAuditService'];
 
     function PatientDetailController($scope, $rootScope, $stateParams, entity, Patient, ReferralSource, EntityAuditService) {
         var vm = this;
@@ -30,12 +30,11 @@
                             var entityValue = audits[i]['entityValue'];
                             console.log(entityValue);
                             if ('patient' in entityValue) {
-                                if(typeof entityValue['patient'] ==="object") {
+                                if(entityValue['patient'] && typeof entityValue['patient'] === "object") {
                                     var patient = entityValue['patient'];
-                                    var patient_id = patient[
-                                    'id']
+                                    var patient_id = patient['id']
                                     if (patient_id==entity['id']) {
-                                        if('team' in entityValue) {
+                                        if(entityValue['team']) {
                                             var team = entityValue['team'];
                                             array_records.push({'teamId': team['id'], 'teamName': team['name'], 'lastModifiedDate': entityValue['lastModifiedDate'], 'lastModifiedBy': entityValue['lastModifiedBy'], 'action': audits[i]['action'], 'potentialDischarged': entityValue['status']});
                                         }

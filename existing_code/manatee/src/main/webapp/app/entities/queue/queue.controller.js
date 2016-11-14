@@ -42,7 +42,7 @@
                     for (var i in result) {
                         if(typeof result[i] ==="object")
                             if ('team' in result[i]) 
-                                if ('name' in result[i]['team']) {
+                                if (result[i]['team']!==null && 'name' in result[i]['team']) {
                                     for (var j in arrayTeam) {
                                         if (arrayTeam[j]['name'] ==result[i]['team']['name']) {
                                             var tmp = result[i];
