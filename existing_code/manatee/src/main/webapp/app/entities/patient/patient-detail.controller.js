@@ -28,6 +28,7 @@
                     if(typeof audits[i] ==="object")
                         if ('id' in audits[i]) {
                             var entityValue = audits[i]['entityValue'];
+                            console.log(entityValue);
                             if ('patient' in entityValue) {
                                 if(typeof entityValue['patient'] ==="object") {
                                     var patient = entityValue['patient'];

@@ -5,9 +5,9 @@
         .module('manateeApp')
         .controller('QueueController', QueueController);
 
-    QueueController.$inject = ['$scope', '$state', 'Queue', 'ChatService', 'Team'];
+    QueueController.$inject = ['$scope', '$state', 'Queue', 'ChatService', 'Team', 'Staff', 'EntityAuditService'];
 
-    function QueueController ($scope, $state, Queue, ChatService, Team) {
+    function QueueController ($scope, $state, Queue, ChatService, Team, Staff, EntityAuditService) {
         var vm = this;
         $scope.queues = [];
 
@@ -172,5 +172,89 @@
             });
         };
         
+        $scope.showPopover_team = function(team) {
+            if (team && "id" in team && team['id']) {
+                var teamID = team['id'];
+                var content_to_show = "";
+                Team.get({id : teamID}, function(teamResult) {
+                    content_to_show+="Team Name:\n - "+ teamResult['name']+"\nTeam Cap:\n - "+teamResult['maxPatients']+"\nTeam Members:\n";
+                    console.log(teamResult);
+
+                    Staff.query(function(result) {
+                        for (var i in result) { 
+                            if (typeof result[i] ==="object"  && 'team' in result[i] && result[i] && result[i]['team']['id']==teamID)
+                                if("name" in result[i] && "role" in result[i] ) {
+                                    content_to_show += " - Name: " + result[i]['name'] + " | Role:" + result[i]['role'];
+                                }
+                        }
+                        $scope.popupContent = content_to_show;
+                    });
+                    $scope.popupContent = content_to_show;
+                });
+            }
+            $scope.popoverIsVisible = true; 
+        };
+
+        $scope.showPopover_history = function(team) {
+            if (team && "id" in team && team['id']) {
+                var teamID = team['id'];
+                var content_to_show = "";
+                EntityAuditService.findByEntity("com.fangzhou.manatee.domain.Queue", 9999).then(function (data) {
+                    var audits = data.map(function(it){
+                        it.entityValue = JSON.parse(it.entityValue);
+                        return it;
+                    });
+
+                    var array_records = [];
+                    for (var i in audits) {                
+                        if(typeof audits[i] ==="object")
+                            if ('id' in audits[i]) {
+                                var entityValue = audits[i]['entityValue'];
+                                if ('team' in entityValue) {
+                                    if(typeof entityValue['team'] ==="object") {
+                                        var new_team = entityValue['team'];
+                                        var new_team_id = new_team[
+                                        'id']
+                                        if (new_team_id==teamID) {
+                                            if('team' in entityValue) {
+                                                var new_team = entityValue['team'];
+                                                array_records.push({'teamId': new_team['id'], 'teamName': new_team['name'], 'lastModifiedDate': new_team['lastModifiedDate'], 'lastModifiedBy': new_team['lastModifiedBy'], 'action': audits[i]['action'], 'potentialDischarged': new_team['status']});
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                    }  
+                    // console.log("vm.audits");
+                    console.log(array_records);
+                    // console.log(entity);
+                    $scope.patientHistories = array_records;
+                }, function(){
+                    // vm.loading = false;
+                });
+
+                Team.get({id : teamID}, function(teamResult) {
+                    content_to_show+="Team Name:\n - "+ teamResult['name']+"\nTeam Cap:\n - "+teamResult['maxPatients']+"\nTeam Members:\n";
+                    console.log(teamResult);
+
+                    Staff.query(function(result) {
+                        for (var i in result) { 
+                            if (typeof result[i] ==="object"  && 'team' in result[i] && result[i] && result[i]['team']['id']==teamID)
+                                if("name" in result[i] && "role" in result[i] ) {
+                                    content_to_show += " - Name: " + result[i]['name'] + " | Role:" + result[i]['role'];
+                                }
+                        }
+                        $scope.popupContent = content_to_show;
+                    });
+                    $scope.popupContent = content_to_show;
+                });
+            }
+            $scope.popoverIsVisible = true; 
+        };
+
+        $scope.hidePopover = function () {
+          $scope.popoverIsVisible = false;
+          $scope.popupContent = "";
+        };
     }
 })();
