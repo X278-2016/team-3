@@ -339,6 +339,19 @@ Generic styles
 /* ==========================================================================
 make sure browsers use the pointer cursor for anchors, even with no href
 ========================================================================== */
+#onHover{
+	border: 1px solid #ccc;
+	font-size: 10px;
+	margin-top: 10px;
+	padding: 5px;
+	text-transform: uppercase;
+	display: none;
+}
+	
+a[href*="#/patient/"]:hover #onHover{
+	display: block;
+}
+
 a:hover {
   cursor: pointer;
 }
