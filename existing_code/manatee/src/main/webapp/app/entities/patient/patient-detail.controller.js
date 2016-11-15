@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('manateeApp', ['ngJsonExportExcel'])
+        .module('manateeApp')
         .controller('PatientDetailController', PatientDetailController);
 
-    PatientDetailController.$inject = ['$scope', '$rootScope','$stateProvider', '$stateParams', 'entity', 'Patient', 'ReferralSource', 'EntityAuditService'];
+    PatientDetailController.$inject = ['$scope', '$rootScope','$stateParams', 'entity', 'Patient', 'ReferralSource', 'EntityAuditService'];
 
     function PatientDetailController($scope, $rootScope, $stateParams, entity, Patient, ReferralSource, EntityAuditService) {
         var vm = this;
