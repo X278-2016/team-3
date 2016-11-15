@@ -91,9 +91,9 @@
                                     </td>
                                     <td ng-switch-when="Outside hospital - in transit" style="width: 10%"><div ng-show="patientItem.timestampDue <= 0"></div> <div ng-show="patientItem.timestampDue > 0"><timer end-time="patientItem.timestampDue">{{ddays}}:{{hhours}}:{{mminutes}}:{{sseconds}}</timer>
                                     </td>
-                                    <td style="width: 10%" >{{patientItem.patient.medicalReferralId}}</td>
-                                    <td style="width: 10%" ><a ui-sref="patient-detail({id:patientItem.id})">{{patientItem.patient.name}}</a></td>
-                                    <td style="width: 10%"><a ui-sref="queue.edit({id:patientItem.id})">Edit</a></td>
+                                    <td style="width: 106px">{{patientItem.patient.medicalReferralId}}</td>
+                                    <td style="width: 107px"><a ui-sref="patient-detail({id:patientItem.id})">{{patientItem.patient.name}}</a></td>
+                                    <td style="width: 107px"><a ui-sref="queue.edit({id:patientItem.id})">Edit</a></td>
                                 </tr>
                             </tbody>
                         </table>
