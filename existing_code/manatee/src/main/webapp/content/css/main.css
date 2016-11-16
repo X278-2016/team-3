@@ -102,6 +102,13 @@ html, body {
     width: 100%;
     height: 100%;
 }
+#content-main .queue .queue-content .title-button {
+    color: #ec6841; 
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    font-size: 70%;
+    padding: 1px 3px;
+}
 #content-main .queue .queue-title {
     color: #ec6841;
     font-size: 90%;
@@ -332,6 +339,19 @@ Generic styles
 /* ==========================================================================
 make sure browsers use the pointer cursor for anchors, even with no href
 ========================================================================== */
+#onHover{
+	border: 1px solid #ccc;
+	font-size: 10px;
+	margin-top: 10px;
+	padding: 5px;
+	text-transform: uppercase;
+	display: none;
+}
+	
+td[id="name"]:hover #onHover{
+	display: block;
+}
+
 a:hover {
   cursor: pointer;
 }
