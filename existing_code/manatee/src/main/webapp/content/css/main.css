@@ -348,7 +348,7 @@ make sure browsers use the pointer cursor for anchors, even with no href
 	display: none;
 }
 	
-a[href*="#/patient/"]:hover #onHover{
+td[id="name"]:hover #onHover{
 	display: block;
 }
 
