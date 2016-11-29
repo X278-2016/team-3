@@ -25,6 +25,7 @@
                     <th><span>Condition Desciption</span></th>
                     <th><span>Priority</span></th>
                     <th><span>Deadline</span></th>
+                    <th><span>Comments</span></th>
                     <th><span>Referral Source</span></th>
                     <th></th>
                 </tr>
@@ -38,6 +39,7 @@
                     <td>{{patient.conditionDesciption}}</td>
                     <td>{{patient.priority}}</td>
                     <td>{{patient.deadline | date:'medium'}}</td>
+                    <td>{{patient.comments}}</td>
                     <td>
                         <a ui-sref="referral-source-detail({id:patient.referralSource.id})">{{patient.referralSource.id}}</a>
                     </td>
