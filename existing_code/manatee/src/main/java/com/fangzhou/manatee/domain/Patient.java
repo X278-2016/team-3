@@ -14,7 +14,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "patient")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Patient extends AbstractAuditingEntity implements Serializable {
+public class Patient implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -39,6 +39,9 @@ public class Patient extends AbstractAuditingEntity implements Serializable {
 
     @Column(name = "deadline")
     private ZonedDateTime deadline;
+
+    @Column(name = "comments")
+    private String comments;
 
     @ManyToOne
     private ReferralSource referralSource;
@@ -99,6 +102,14 @@ public class Patient extends AbstractAuditingEntity implements Serializable {
         this.deadline = deadline;
     }
 
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
     public ReferralSource getReferralSource() {
         return referralSource;
     }
@@ -137,6 +148,7 @@ public class Patient extends AbstractAuditingEntity implements Serializable {
             ", conditionDesciption='" + conditionDesciption + "'" +
             ", priority='" + priority + "'" +
             ", deadline='" + deadline + "'" +
+            ", comments='" + comments + "'" +
             '}';
     }
 }
