@@ -38,7 +38,18 @@
                                     if (patient_id==entity['id']) {
                                         if(entityValue['team']) {
                                             var team = entityValue['team'];
-                                            array_records.push({'order': array_records.length + 1,'teamId': team['id'], 'teamName': team['name'], 'lastModifiedDate': entityValue['lastModifiedDate'], 'lastModifiedBy': entityValue['lastModifiedBy'], 'action': audits[i]['action'], 'potentialDischarged': entityValue['status']});
+                                            var datetime = entityValue['lastModifiedDate'];
+                                            var tempDatetime = datetime.split("T");
+                                            var tempDate = tempDatetime[0].split("-");
+                                            var tempTime = tempDatetime[1].split(":");
+                                            var monthNames = [
+                                                "January", "February", "March",
+                                                "April", "May", "June", "July",
+                                                "August", "September", "October",
+                                                "November", "December"
+                                            ];
+                                            var dateTime = tempDate[0].toString() + "/" + tempDate[1].toString() + "/" + tempDate[2].toString() + " " + ((tempTime[0] >= 12) ? (tempTime[0] - 12).toString() : (tempTime[0]).toString()) + ":" + tempTime[1] + ":" + tempTime[2].split(".")[0] + ((tempTime[0] >= 12) ? "PM": "AM");
+                                            array_records.push({'order': array_records.length + 1,'teamId': team['id'], 'teamName': team['name'], 'lastModifiedDate': dateTime, 'lastModifiedBy': entityValue['lastModifiedBy'], 'action': audits[i]['action'], 'potentialDischarged': entityValue['status']});
                                         }
                                     }
                                 }

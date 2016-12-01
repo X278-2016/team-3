@@ -1,5 +1,5 @@
 
-    <h2><span>Patient</span> {{vm.patient.id}}</h2>
+    <h2><span>Patient</span> {{vm.patient.id}}: {{vm.patient.name}}</h2>
     <hr>
     <dl class="dl-horizontal jh-entity-details">
         <dt><span>Name</span></dt>
@@ -32,7 +32,7 @@
         </dd>
     </dl>
     <br/>
-    <h4><span>History</span></h4>
+    <h4><span>{{vm.patient.name}}'s History</span></h4>
     <div>
         <table class="history-table" style="width: 100%; border-collapse: collapse;">
             <thead class="">
