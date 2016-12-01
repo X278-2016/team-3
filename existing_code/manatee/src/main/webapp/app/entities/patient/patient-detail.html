@@ -37,20 +37,20 @@
         <table class="history-table" style="width: 100%; border-collapse: collapse;">
             <thead class="">
                 <tr>
-                    <th style="width: 2%">Team ID</th>
-                    <th style="width: 2%">Team Name</th>
-                    <th style="width: 2%">Potential Discharged</th>
-                    <th style="width: 2%">Action</th>
-                    <th style="width: 2%">Last Modified Date</th>
-                    <th style="width: 2%">Last Modified By</th>
+                    <th style="width: 2%"><a ng-click="sortType = 'order'; sortReverse = !sortReverse">Sequence</a></th>
+                    <th style="width: 2%"><a ng-click="sortType = 'teamName'; sortReverse = !sortReverse">Team Name</a></th>
+                    <th style="width: 2%"><a ng-click="sortType = 'potentialDischarged'; sortReverse = !sortReverse">Potential Discharged</a></th>
+                    <th style="width: 2%"><a ng-click="sortType = 'action'; sortReverse = !sortReverse">Action</a></th>
+                    <th style="width: 2%"><a ng-click="sortType = 'lastModifiedDate'; sortReverse = !sortReverse">Modified at</a></th>
+                    <th style="width: 2%"><a ng-click="sortType = 'lastModifiedBy'; sortReverse = !sortReverse">Modified By</a></th>
                 </tr>
             </thead>
             <tbody class=""  id="">
-                <tr ng-repeat="patientHistory in patientHistories" id="potentialdischarge-tr">
-                    <td style="width: 2%" >{{patientHistory.teamId}}</td>
-                    <td style="width: 2%" >{{patientHistory.teamName}}</td>
+                <tr ng-repeat="patientHistory in patientHistories | orderBy:sortType:sortReverse" id="potentialdischarge-tr">
+                    <td style="width: 2%" >{{patientHistory.order}}</td>
+                    <td style="width: 2%" >{{patientHistory.teamName}} (ID: {{patientHistory.teamId}})</td>
                     <td style="width: 2%" >{{patientHistory.potentialDischarged}}</td>
-                    <td style="width: 2%" >{{patientHistory.action}}</td>
+                    <td style="width: 2%" >{{patientHistory.action.toLowerCase()}}</td>
                     <td style="width: 2%">{{patientHistory.lastModifiedDate}}</td>
                     <td style="width: 2%">{{patientHistory.lastModifiedBy}}</td>
                 </tr>

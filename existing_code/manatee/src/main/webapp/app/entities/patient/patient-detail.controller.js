@@ -8,6 +8,8 @@
     PatientDetailController.$inject = ['$scope', '$rootScope','$stateParams', 'entity', 'Patient', 'ReferralSource', 'EntityAuditService'];
 
     function PatientDetailController($scope, $rootScope, $stateParams, entity, Patient, ReferralSource, EntityAuditService) {
+        $scope.sortType     = 'order'; // set the default sort type
+        $scope.sortReverse  = false;  // set the default sort order
         var vm = this;
         vm.patient = entity;
         
@@ -36,7 +38,7 @@
                                     if (patient_id==entity['id']) {
                                         if(entityValue['team']) {
                                             var team = entityValue['team'];
-                                            array_records.push({'teamId': team['id'], 'teamName': team['name'], 'lastModifiedDate': entityValue['lastModifiedDate'], 'lastModifiedBy': entityValue['lastModifiedBy'], 'action': audits[i]['action'], 'potentialDischarged': entityValue['status']});
+                                            array_records.push({'order': array_records.length + 1,'teamId': team['id'], 'teamName': team['name'], 'lastModifiedDate': entityValue['lastModifiedDate'], 'lastModifiedBy': entityValue['lastModifiedBy'], 'action': audits[i]['action'], 'potentialDischarged': entityValue['status']});
                                         }
                                     }
                                 }
