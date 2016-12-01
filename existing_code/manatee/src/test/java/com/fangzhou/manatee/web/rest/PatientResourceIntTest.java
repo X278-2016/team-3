@@ -62,6 +62,8 @@ public class PatientResourceIntTest {
     private static final ZonedDateTime DEFAULT_DEADLINE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneId.systemDefault());
     private static final ZonedDateTime UPDATED_DEADLINE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
     private static final String DEFAULT_DEADLINE_STR = dateTimeFormatter.format(DEFAULT_DEADLINE);
+    private static final String DEFAULT_COMMENTS = "AAAAA";
+    private static final String UPDATED_COMMENTS = "BBBBB";
 
     @Inject
     private PatientRepository patientRepository;
@@ -95,6 +97,7 @@ public class PatientResourceIntTest {
         patient.setConditionDesciption(DEFAULT_CONDITION_DESCIPTION);
         patient.setPriority(DEFAULT_PRIORITY);
         patient.setDeadline(DEFAULT_DEADLINE);
+        patient.setComments(DEFAULT_COMMENTS);
     }
 
     @Test
@@ -119,6 +122,7 @@ public class PatientResourceIntTest {
         assertThat(testPatient.getConditionDesciption()).isEqualTo(DEFAULT_CONDITION_DESCIPTION);
         assertThat(testPatient.getPriority()).isEqualTo(DEFAULT_PRIORITY);
         assertThat(testPatient.getDeadline()).isEqualTo(DEFAULT_DEADLINE);
+        assertThat(testPatient.getComments()).isEqualTo(DEFAULT_COMMENTS);
     }
 
     @Test
@@ -137,7 +141,8 @@ public class PatientResourceIntTest {
                 .andExpect(jsonPath("$.[*].age").value(hasItem(DEFAULT_AGE.intValue())))
                 .andExpect(jsonPath("$.[*].conditionDesciption").value(hasItem(DEFAULT_CONDITION_DESCIPTION.toString())))
                 .andExpect(jsonPath("$.[*].priority").value(hasItem(DEFAULT_PRIORITY.toString())))
-                .andExpect(jsonPath("$.[*].deadline").value(hasItem(DEFAULT_DEADLINE_STR)));
+                .andExpect(jsonPath("$.[*].deadline").value(hasItem(DEFAULT_DEADLINE_STR)))
+                .andExpect(jsonPath("$.[*].comments").value(hasItem(DEFAULT_COMMENTS.toString())));
     }
 
     @Test
@@ -156,7 +161,8 @@ public class PatientResourceIntTest {
             .andExpect(jsonPath("$.age").value(DEFAULT_AGE.intValue()))
             .andExpect(jsonPath("$.conditionDesciption").value(DEFAULT_CONDITION_DESCIPTION.toString()))
             .andExpect(jsonPath("$.priority").value(DEFAULT_PRIORITY.toString()))
-            .andExpect(jsonPath("$.deadline").value(DEFAULT_DEADLINE_STR));
+            .andExpect(jsonPath("$.deadline").value(DEFAULT_DEADLINE_STR))
+            .andExpect(jsonPath("$.comments").value(DEFAULT_COMMENTS.toString()));
     }
 
     @Test
@@ -183,6 +189,7 @@ public class PatientResourceIntTest {
         updatedPatient.setConditionDesciption(UPDATED_CONDITION_DESCIPTION);
         updatedPatient.setPriority(UPDATED_PRIORITY);
         updatedPatient.setDeadline(UPDATED_DEADLINE);
+        updatedPatient.setComments(UPDATED_COMMENTS);
 
         restPatientMockMvc.perform(put("/api/patients")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -199,6 +206,7 @@ public class PatientResourceIntTest {
         assertThat(testPatient.getConditionDesciption()).isEqualTo(UPDATED_CONDITION_DESCIPTION);
         assertThat(testPatient.getPriority()).isEqualTo(UPDATED_PRIORITY);
         assertThat(testPatient.getDeadline()).isEqualTo(UPDATED_DEADLINE);
+        assertThat(testPatient.getComments()).isEqualTo(UPDATED_COMMENTS);
     }
 
     @Test

@@ -68,6 +68,7 @@
                                 conditionDesciption: null,
                                 priority: null,
                                 deadline: null,
+                                comments: null,
                                 id: null
                             };
                         }
