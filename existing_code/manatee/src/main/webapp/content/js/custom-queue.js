@@ -43,11 +43,11 @@ function activatejQueryUI() {
     }).disableSelection();
 }
 
-setInterval(refresh_queue_page, 60000);
-last_update_timestamp = new Date().getTime();
+// setInterval(refresh_queue_page, 60000);
+// last_update_timestamp = new Date().getTime();
 
-function refresh_queue_page() {
-  $('#QueueController').scope().addMessage();
+// function refresh_queue_page() {
+//   $('#QueueController').scope().addMessage();
   // new_update_timestamp = new Date().getTime();
   // if (isRepeat) {      
   //   if (new_update_timestamp-last_update_timestamp<60) {
@@ -65,5 +65,5 @@ function refresh_queue_page() {
   //   last_update_timestamp = new_update_timestamp;
   // }
     
-}
+// }
 

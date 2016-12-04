@@ -26,6 +26,31 @@
             resolve: {
             }
         })
+        .state('queue.history', {
+            parent: 'queue',
+            url: '/{id}/edit',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/queue/queue-history-dialog.html',
+                    controller: 'QueueHistoryDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: ['Queue', function(Queue) {
+                            return Queue.get({id : $stateParams.id});
+                        }]
+                    }
+                }).result.then(function() {
+                    $state.go('queue', null, { reload: true });
+                }, function() {
+                    $state.go('^');
+                });
+            }]
+        })
         .state('queue-detail', {
             parent: 'entity',
             url: '/queue/{id}',
