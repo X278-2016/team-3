@@ -5,66 +5,56 @@
         .module('manateeApp')
         .controller('QueueHistoryDialogController', QueueHistoryDialogController);
 
-    QueueHistoryDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Patient', 'ReferralSource','Team','Queue'];
+    QueueHistoryDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity','Queue','EntityAuditService'];
 
-    function QueueHistoryDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Patient, ReferralSource,Team,Queue) {
+    function QueueHistoryDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Queue, EntityAuditService) {
         var vm = this;
-        vm.teams = Team.query();
-        vm.queue = entity;
-        vm.patient = entity;
-        vm.referralsources = ReferralSource.query();
-
-        $timeout(function (){
-            angular.element('.form-group:eq(1)>input').focus();
-        });
-
-        var onSaveSuccess = function (result) {
-            $scope.$emit('manateeApp:patientUpdate', result);
-            $uibModalInstance.close(result);
-            vm.isSaving = false;
-        };
-
-        var onSaveError = function () {
-            vm.isSaving = false;
-        };
-
-        var onNewPatientSaveSuccess = function (result) {
-            $scope.$emit('manateeApp:patientUpdate', result);
-
-            if (vm.patient.team !== null) {
-            		var newqueue = {};
-                	newqueue.team = vm.patient.team;
-                	newqueue.patient = result;
-                	newqueue.status=null;
-                	newqueue.timestampInitial=null;
-                	newqueue.timestampFinal=null;
-                	newqueue.id=null;
-                	console.log(newqueue);
-                	Queue.save(newqueue, onSaveSuccess, onSaveError);
-             }
-
-            $uibModalInstance.close(result);
-            vm.isSaving = false;
-        };
-
-        vm.save = function () {
-            vm.isSaving = true;
-            if (vm.patient.id !== null) {
-                Patient.update(vm.patient, onNewPatientSaveSuccess, onSaveError);
-            } else {
-            		Patient.save(vm.patient, onNewPatientSaveSuccess, onSaveError);	             		
-            }
-        };
+        // vm.queue = entity;
+        // vm.patient = entity;
+        // vm.referralsources = ReferralSource.query();
 
         vm.clear = function() {
             $uibModalInstance.dismiss('cancel');
         };
 
-        vm.datePickerOpenStatus = {};
-        vm.datePickerOpenStatus.deadline = false;
+        $scope.loadTeamHistory = function() {
+            EntityAuditService.findByCurrentDay().then(function (data) {
+                var audits = data.map(function(it){
+                    it.entityValue = JSON.parse(it.entityValue);
+                    return it;
+                });
 
-        vm.openCalendar = function(date) {
-            vm.datePickerOpenStatus[date] = true;
-        };
+                var array_records = [];
+                for (var i in audits) {                
+                    if(typeof audits[i] ==="object")
+                        if ('id' in audits[i]) {
+                            var entityValue = audits[i]['entityValue'];
+                            console.log(entityValue);
+                            if ('team' in entityValue) {
+                                if(typeof entityValue['team'] ==="object") {
+                                    // var team = entityValue['team'];
+                                    // var team_id = team[
+                                    // 'id']
+                                    // if (team_id==entity['id']) {
+                                        if('patient' in entityValue) {
+                                            var patient = entityValue['patient'];
+                                            array_records.push({'patientId': patient['id'], 'patientName': patient['name'], 'lastModifiedDate': entityValue['lastModifiedDate'], 'lastModifiedBy': entityValue['lastModifiedBy'], 'action': audits[i]['action'], 'potentialDischarged': entityValue['status']});
+                                        }
+                                    // }
+                                }
+                            }
+                        }
+                }  
+                // console.log("vm.audits");
+                // console.log(array_records);
+                // console.log(entity);
+                $scope.patientHistories = array_records;
+            }, function(){
+                // vm.loading = false;
+            });
+        }
+        $scope.loadTeamHistory();
+
+        $scope.tmpvalue = 'array_records';
     }
 })();

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.time.ZonedDateTime;
 
 /**
  * Spring Data JPA repository for the EntityAuditEvent entity.
@@ -23,6 +24,10 @@ public interface EntityAuditEventRepository extends JpaRepository<EntityAuditEve
     List<String> findAllEntityTypes();
 
     Page<EntityAuditEvent> findAllByEntityType(String entityType, Pageable pageRequest);
+
+    // manatee code
+    @Query("SELECT a FROM EntityAuditEvent a where a.modifiedDate > :modifiedDate")
+    List<EntityAuditEvent> findAllByCurrentDay(@Param("modifiedDate") ZonedDateTime modifiedDate);
 
     @Query("SELECT ae FROM EntityAuditEvent ae where ae.entityType = :type and ae.entityId = :entityId and " +
         "ae.commitVersion =(SELECT max(a.commitVersion) FROM EntityAuditEvent a where a.entityType = :type and " +
