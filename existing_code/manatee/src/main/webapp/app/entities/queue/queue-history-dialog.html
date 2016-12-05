@@ -1,0 +1,42 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPatientLabel">Today's History</h4>
+    </div>
+
+    <div class="modal-body">
+        <div>
+            <table class="history-table" style="width: 100%; border-collapse: collapse;">
+                <thead class="">
+                    <tr>
+                        <th style="width: 2%">Patient ID</th>
+                        <th style="width: 2%">Patient Name</th>
+                        <th style="width: 2%">Potential Discharged</th>
+                        <th style="width: 2%">Action</th>
+                        <th style="width: 2%">Last Modified Date</th>
+                        <th style="width: 2%">Last Modified By</th>
+                    </tr>
+                </thead>
+                <tbody class=""  id="">
+                    <tr ng-repeat="patientHistory in patientHistories" id="potentialdischarge-tr">
+                        <td style="width: 2%" >{{patientHistory.patientId}}</td>
+                        <td style="width: 2%" >{{patientHistory.patientName}}</td>
+                        <td style="width: 2%" >{{patientHistory.potentialDischarged}}</td>
+                        <td style="width: 2%" >{{patientHistory.action}}</td>
+                        <td style="width: 2%">{{patientHistory.lastModifiedDate}}</td>
+                        <td style="width: 2%">{{patientHistory.lastModifiedBy}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ok"></span>&nbsp;<span>Done</span>
+        </button>
+    </div>
+</form>
