@@ -1,5 +1,6 @@
 .popup-container {
   position: absolute;
+  z-index: 999;
   min-height: 100%;  /* Fallback for vh unit */
   min-height: 100vh; /* You might also want to use
                         'height' property instead.

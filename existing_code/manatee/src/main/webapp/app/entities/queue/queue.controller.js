@@ -11,6 +11,45 @@
         var vm = this;
         $scope.queues = [];
 
+        $scope.gridsterOpts = {
+            columns: 6, // the width of the grid, in columns
+            pushing: true, // whether to push other items out of the way on move or resize
+            floating: true, // whether to automatically float items up so they stack (you can temporarily disable if you are adding unsorted items with ng-repeat)
+            swapping: false, // whether or not to have items of the same size switch places instead of pushing down if they are the same size
+            width: 'auto', // can be an integer or 'auto'. 'auto' scales gridster to be the full width of its containing element
+            colWidth: 'auto', // can be an integer or 'auto'.  'auto' uses the pixel width of the element divided by 'columns'
+            rowHeight: 'match', // can be an integer or 'match'.  Match uses the colWidth, giving you square widgets.
+            margins: [10, 10], // the pixel distance between each widget
+            outerMargin: true, // whether margins apply to outer edges of the grid
+            sparse: false, // "true" can increase performance of dragging and resizing for big grid (e.g. 20x50)
+            isMobile: false, // stacks the grid items if true
+            mobileBreakPoint: 600, // if the screen is not wider that this, remove the grid layout and stack the items
+            mobileModeEnabled: true, // whether or not to toggle mobile mode when screen width is less than mobileBreakPoint
+            minColumns: 1, // the minimum columns the grid must have
+            minRows: 2, // the minimum height of the grid, in rows
+            maxRows: 100,
+            defaultSizeX: 2, // the default width of a gridster item, if not specifed
+            defaultSizeY: 1, // the default height of a gridster item, if not specified
+            minSizeX: 1, // minimum column width of an item
+            maxSizeX: null, // maximum column width of an item
+            minSizeY: 2, // minumum row height of an item
+            maxSizeY: null, // maximum row height of an item
+            // resizable: {
+            //    enabled: true,
+            //    handles: ['n', 'e', 's', 'w', 'ne', 'se', 'sw', 'nw'],
+            //    start: function(event, $element, widget) {}, // optional callback fired when resize is started,
+            //    resize: function(event, $element, widget) {}, // optional callback fired when item is resized,
+            //    stop: function(event, $element, widget) {} // optional callback fired when item is finished resizing
+            // },
+            // draggable: {
+            //    enabled: false, // whether dragging items is supported
+               // handle: '.my-class', // optional selector for drag handle
+               // start: function(event, $element, widget) {}, // optional callback fired when drag is started,
+               // drag: function(event, $element, widget) {}, // optional callback fired when item is moved,
+               // stop: function(event, $element, widget) {} // optional callback fired when item is finished dragging
+            // }
+        };
+
         function get_max_for_today(one_team) {
             var weekdays = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
             var d = new Date();
@@ -90,6 +129,32 @@
                         }
                     }
                     $scope.teams = arrayTeam;
+                    var standardItems = [];
+                    for (var i_team = 0; i_team < arrayPatientTeam.length; i_team++) { 
+                        standardItems.push({row: Math.floor(i_team/3)*3, col: (i_team%3)*2});
+                    }
+                    $scope.standardItems = standardItems;
+                    $( ".connectedSortable" ).sortable({
+      connectWith: ".connectedSortable",
+      items: "tr",
+      opacity: 0.5,
+      revert: 400,
+      receive: function(event, ui) {
+        var id = $(ui.item).attr('id');
+        var teamID = this.id;
+        if (id=="potentialdischarge-tr") {
+          ui.sender.sortable("cancel");
+          return;
+        }
+        if (teamID=="potentialdischarge") {
+          ui.sender.sortable("cancel");
+          $('#QueueController').scope().updateStatus(id, "potentialdischarge");
+        } else {
+          $('#QueueController').scope().updateTeam(id, teamID);
+        }
+        // console.log(id +"  receive: "+ teamID);
+      },
+    }).disableSelection();
                     $scope.arrayPatientTeam = arrayPatientTeam;
                     $scope.arrayPotentialDischargedPatient = arrayPotentialDischargedPatient;
                     
@@ -256,5 +321,7 @@
           $scope.popoverIsVisible = false;
           $scope.popupContent = "";
         };
+
+
     }
 })();
