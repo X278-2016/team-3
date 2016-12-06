@@ -183,6 +183,31 @@
                     $state.go('queue');
                 });
             }]
+        })
+        .state('queue.patientedit', {
+            parent: 'queue',
+            url: '/{id}/editpatient',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/patient/patient-dialog.html',
+                    controller: 'PatientDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: ['Patient', function(Patient) {
+                            return Patient.get({id : $stateParams.id});
+                        }]
+                    }
+                }).result.then(function() {
+                    $state.go('patient', null, { reload: true });
+                }, function() {
+                    $state.go('^');
+                });
+            }]
         });
     }
 

@@ -69,6 +69,7 @@
                                 priority: null,
                                 deadline: null,
                                 comments: null,
+                                roomNumber: null,
                                 id: null
                             };
                         }

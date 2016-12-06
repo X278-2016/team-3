@@ -1,5 +1,6 @@
 
-    <h2><span>Patient</span> {{vm.patient.id}}: {{vm.patient.name}}</h2>
+<div>
+    <h2><span>Patient</span> {{vm.patient.id}}</h2>
     <hr>
     <dl class="dl-horizontal jh-entity-details">
         <dt><span>Name</span></dt>
@@ -30,38 +31,16 @@
         <dd>
             <span>{{vm.patient.comments}}</span>
         </dd>
+        <dt><span>Room Number</span></dt>
+        <dd>
+            <span>{{vm.patient.roomNumber}}</span>
+        </dd>
         <dt><span>Referral Source</span></dt>
         <dd>
             <a ui-sref="referral-source-detail({id:vm.patient.referralSource.id})">{{vm.patient.referralSource.id}}</a>
         </dd>
     </dl>
-    <br/>
-    <h4><span>{{vm.patient.name}}'s History</span></h4>
-    <div>
-        <table class="history-table" style="width: 100%; border-collapse: collapse;">
-            <thead class="">
-                <tr>
-                    <th style="width: 2%"><a ng-click="sortType = 'order'; sortReverse = !sortReverse">Sequence</a></th>
-                    <th style="width: 2%"><a ng-click="sortType = 'teamName'; sortReverse = !sortReverse">Team Name</a></th>
-                    <th style="width: 2%"><a ng-click="sortType = 'potentialDischarged'; sortReverse = !sortReverse">Potential Discharged</a></th>
-                    <th style="width: 2%"><a ng-click="sortType = 'action'; sortReverse = !sortReverse">Action</a></th>
-                    <th style="width: 2%"><a ng-click="sortType = 'lastModifiedDate'; sortReverse = !sortReverse">Modified at</a></th>
-                    <th style="width: 2%"><a ng-click="sortType = 'lastModifiedBy'; sortReverse = !sortReverse">Modified By</a></th>
-                </tr>
-            </thead>
-            <tbody class=""  id="">
-                <tr ng-repeat="patientHistory in patientHistories | orderBy:sortType:sortReverse" id="potentialdischarge-tr">
-                    <td style="width: 2%" >{{patientHistory.order}}</td>
-                    <td style="width: 2%" >{{patientHistory.teamName}} (ID: {{patientHistory.teamId}})</td>
-                    <td style="width: 2%" >{{patientHistory.potentialDischarged}}</td>
-                    <td style="width: 2%" >{{patientHistory.action.toLowerCase()}}</td>
-                    <td style="width: 2%">{{patientHistory.lastModifiedDate}}</td>
-                    <td style="width: 2%">{{patientHistory.lastModifiedBy}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <br/>
+
     <button type="submit"
             onclick="window.history.back()"
             class="btn btn-info">

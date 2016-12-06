@@ -42,6 +42,10 @@
         {
             "fieldName": "comments",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "roomNumber",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20160508162047",

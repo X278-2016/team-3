@@ -60,7 +60,12 @@
                     </span>
                 </div>
         </div>
-
+        <div class="form-group">
+            <label class="control-label" for="field_roomNumber">Room Number</label>
+            <input type="text" class="form-control" name="roomNumber" id="field_roomNumber"
+                    ng-model="vm.patient.roomNumber"
+                     />
+        </div>
         <div class="form-group">
             <label for="field_referralSource">Referral Source</label>
             <select class="form-control" id="field_referralSource" name="referralSource" ng-model="vm.patient.referralSource" ng-options="referralSource as referralSource.name for referralSource in vm.referralsources track by referralSource.id">

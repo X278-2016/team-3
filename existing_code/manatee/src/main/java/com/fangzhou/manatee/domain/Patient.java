@@ -43,6 +43,9 @@ public class Patient implements Serializable {
     @Column(name = "comments")
     private String comments;
 
+    @Column(name = "room_number")
+    private String roomNumber;
+
     @ManyToOne
     private ReferralSource referralSource;
 
@@ -110,6 +113,14 @@ public class Patient implements Serializable {
         this.comments = comments;
     }
 
+    public String getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
     public ReferralSource getReferralSource() {
         return referralSource;
     }
@@ -149,6 +160,7 @@ public class Patient implements Serializable {
             ", priority='" + priority + "'" +
             ", deadline='" + deadline + "'" +
             ", comments='" + comments + "'" +
+            ", roomNumber='" + roomNumber + "'" +
             '}';
     }
 }

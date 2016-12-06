@@ -93,7 +93,7 @@
     </div>
 
     <div id="content-main">
-        
+
         <div class="popup-container"  ng-show="popoverIsVisible" >
             <div class="central-popup" ng-show="popoverIsVisible" >{{popupContent}}</div>
         </div>
@@ -127,7 +127,7 @@
                                     </td>
                                     <td style="width: 106px">{{patientItem.patient.medicalReferralId}}</td>
                                     <td style="width: 107px" id="name"><a ui-sref="patient-detail({id:patientItem.id})">{{patientItem.patient.name}}<span id="onHover">Name: {{patientItem.patient.name}} <br>Priority: {{patientItem.patient.priority}}</span></a></td>
-                                    <td style="width: 107px"><a ui-sref="patient.edit({id:patientItem.id})">Edit</a></td>
+                                    <td style="width: 107px"><a ui-sref="queue.patientedit({id:patientItem.id})">Edit</a></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -171,7 +171,7 @@
                         </table>
                     </div>
                 </div>
-                
+
             </div> -->
         </div>
     </div>

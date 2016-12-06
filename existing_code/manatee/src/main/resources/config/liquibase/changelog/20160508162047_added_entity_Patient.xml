@@ -49,6 +49,10 @@
                 <constraints nullable="true" />
             </column>
             
+            <column name="room_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
             <column name="referral_source_id" type="bigint">
                 <constraints nullable="true" />
             </column>
