@@ -55,6 +55,36 @@
                 </tr>
             </tbody>
         </table>
+
+
+        <div id="content-sidebar-title">
+            INCOMING PATIENTS
+        </div>
+        <table class="" style="width: 100%; border-collapse: collapse;">
+            <thead class="dischargedQueueTable-head">
+                <tr>
+                    <th style="width: 10%">MRID</th>
+                    <th style="width: 10%">Name</th>
+                    <th style="width: 10%">Priority</th>
+                    <th style="width: 2%">Source</th>
+                    <th style="width: 2%">Add</th>
+                </tr>
+            </thead>
+            <tbody class="connectedSortable dischargedQueueTable"  id="potentialdischarge">
+                <tr ng-repeat="incomingPatient in arrayIncomingPatient" id="potentialdischarge-tr">
+                    <td style="width: 10%">{{incomingPatient.patient.medicalReferralId}}</td>
+                    <td style="width: 10%">{{incomingPatient.patient.name}}</td>
+                    <td style="width: 2%">{{incomingPatient.patient.priority}}</td>
+                    <td style="width: 2%">{{incomingPatient.patient.referralSource.name}}</td>
+                    <td style="width: 2%"><button ui-sref="queue.new">
+                    <span class="glyphicon glyphicon-plus"></span></button></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
         <!-- <ui class="sidebar-connectedSortable connectedSortable" id="potentialdischarge">
             <li ng-repeat="potentialDischargedPatient in arrayPotentialDischargedPatient">
                 abc
@@ -63,15 +93,16 @@
     </div>
 
     <div id="content-main">
+        
         <div class="popup-container"  ng-show="popoverIsVisible" >
             <div class="central-popup" ng-show="popoverIsVisible" >{{popupContent}}</div>
-            </div>
-        <div class="container">
+        </div>
 
         <div gridster="gridsterOpts">
             <ul class="queue">
                 <li gridster-item="item" ng-repeat="item in standardItems" style="background-color: white">
                     <div class="queue-content">
+                        <div class="container" style="width: 100%">
                         <!-- <p class="queue-title" ng-mouseover="showPopover(teams[arrayPatientTeam.indexOf(patientTeam)])" ng-mouseleave="hidePopover()">{{teams[arrayPatientTeam.indexOf(patientTeam)].name}}</p> -->
                         <p>
                             <span class="queue-title">{{teams[$index].name}}</span>

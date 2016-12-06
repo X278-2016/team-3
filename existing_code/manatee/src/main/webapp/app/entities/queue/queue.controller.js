@@ -65,6 +65,7 @@
             var arrayTeam = [];
             var arrayPatientTeam = [];
             var arrayPotentialDischargedPatient = [];
+            var arrayIncomingPatient = [];
             Team.query(function(result) {
                 for (var i in result) {                    
                     if(typeof result[i] ==="object")
@@ -80,7 +81,7 @@
                 Queue.query(function(result) {
                     for (var i in result) {
                         if(typeof result[i] ==="object")
-                            if ('team' in result[i]) 
+                            if ('team' in result[i]) {
                                 if (result[i]['team']!==null && 'name' in result[i]['team']) {
                                     for (var j in arrayTeam) {
                                         if (arrayTeam[j]['name'] ==result[i]['team']['name']) {
@@ -110,8 +111,12 @@
                                             arrayPatientTeam[j].push(tmp);
                                         }
                                     }
+                                } else {
+                                    arrayIncomingPatient.push(result[i]);
                                 }
+                            }
                     }
+                    console.log('arrayIncomingPatient', arrayIncomingPatient);
                     for (var i in arrayTeam) {
                         // console.log(arrayTeam[i]['space']);
                         if (arrayTeam[i]['space']==null) {
@@ -157,6 +162,7 @@
     }).disableSelection();
                     $scope.arrayPatientTeam = arrayPatientTeam;
                     $scope.arrayPotentialDischargedPatient = arrayPotentialDischargedPatient;
+                    $scope.arrayIncomingPatient = arrayIncomingPatient;
                     
                 });
             });
@@ -254,6 +260,7 @@
                         }
                         $scope.popupContent = content_to_show;
                     });
+                    $scope.popupTeam = team['id'];
                     $scope.popupContent = content_to_show;
                 });
             }
