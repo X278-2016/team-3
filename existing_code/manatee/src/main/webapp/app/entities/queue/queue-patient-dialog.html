@@ -10,7 +10,7 @@
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group">
             <label for="field_team">Assign a Team</label>
-            <select class="form-control" id="field_team" name="team" ng-model="vm.queue.team" ng-options="team as team.id for team in vm.teams track by team.id">
+            <select class="form-control" id="field_team" name="team" ng-model="vm.queue.team" ng-options="team as team.name for team in vm.teams track by team.id">
                 <option value=""></option>
             </select>
         </div>
@@ -63,7 +63,7 @@
 
         <div class="form-group">
             <label for="field_referralSource">Referral Source</label>
-            <select class="form-control" id="field_referralSource" name="referralSource" ng-model="vm.patient.referralSource" ng-options="referralSource as referralSource.id for referralSource in vm.referralsources track by referralSource.id">
+            <select class="form-control" id="field_referralSource" name="referralSource" ng-model="vm.patient.referralSource" ng-options="referralSource as referralSource.name for referralSource in vm.referralsources track by referralSource.id">
                 <option value=""></option>
             </select>
         </div>

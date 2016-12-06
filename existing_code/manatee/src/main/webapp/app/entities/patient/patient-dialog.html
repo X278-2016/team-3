@@ -62,7 +62,7 @@
 
         <div class="form-group">
             <label for="field_referralSource">Referral Source</label>
-            <select class="form-control" id="field_referralSource" name="referralSource" ng-model="vm.patient.referralSource" ng-options="referralSource as referralSource.id for referralSource in vm.referralsources track by referralSource.id">
+            <select class="form-control" id="field_referralSource" name="referralSource" ng-model="vm.patient.referralSource" ng-options="referralSource as referralSource.name for referralSource in vm.referralsources track by referralSource.id">
                 <option value=""></option>
             </select>
         </div>
