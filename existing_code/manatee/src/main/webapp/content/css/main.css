@@ -74,7 +74,7 @@ html, body {
 }
 #content-main {
     position:absolute;
-    right:200px;
+    right:250px;
     left:0px;
     /*bottom: 0px;*/
     /*top: 0px;*/
@@ -124,7 +124,7 @@ html, body {
     position:fixed;
     overflow-y:scroll;
     right:0px;
-    width:200px;
+    width:250px;
     height:100%;
     padding: 15px;
     color: #777;

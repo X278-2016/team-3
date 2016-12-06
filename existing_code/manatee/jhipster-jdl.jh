@@ -37,6 +37,18 @@ entity Patient {
     deadline ZonedDateTime
 }
 
+entity CheckIn {
+    timestamp ZonedDateTime
+}
+
+relationship ManyToOne {
+    CheckIn{team} to Team
+}
+
+relationship ManyToOne {
+    CheckIn{team} to Patient
+}
+
 relationship ManyToOne {
 	Patient{referralSource} to ReferralSource
 }

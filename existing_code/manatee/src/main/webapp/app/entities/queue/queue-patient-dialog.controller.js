@@ -31,17 +31,17 @@
         var onNewPatientSaveSuccess = function (result) {
             $scope.$emit('manateeApp:patientUpdate', result);
 
-            if (vm.patient.team !== null) {
+            // if (vm.patient.team !== null) {
             		var newqueue = {};
                 	newqueue.team = vm.patient.team;
                 	newqueue.patient = result;
-                	newqueue.status=null;
+                	newqueue.status = (vm.patient.team ? null : 'incoming');
                 	newqueue.timestampInitial=null;
                 	newqueue.timestampFinal=null;
                 	newqueue.id=null;
                 	console.log(newqueue);
                 	Queue.save(newqueue, onSaveSuccess, onSaveError);
-             }
+             // }
 
             $uibModalInstance.close(result);
             vm.isSaving = false;

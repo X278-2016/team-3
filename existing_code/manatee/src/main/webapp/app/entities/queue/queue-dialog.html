@@ -42,13 +42,13 @@
 
         <div class="form-group">
             <label for="field_patient">Patient</label>
-            <select class="form-control" id="field_patient" name="patient" ng-model="vm.queue.patient" ng-options="patient as patient.id for patient in vm.patients track by patient.id">
+            <select class="form-control" id="field_patient" name="patient" ng-model="vm.queue.patient" ng-options="patient as patient.name for patient in vm.patients track by patient.id">
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label for="field_team">Team</label>
-            <select class="form-control" id="field_team" name="team" ng-model="vm.queue.team" ng-options="team as team.id for team in vm.teams track by team.id">
+            <select class="form-control" id="field_team" name="team" ng-model="vm.queue.team" ng-options="team as team.name for team in vm.teams track by team.id">
                 <option value=""></option>
             </select>
         </div>

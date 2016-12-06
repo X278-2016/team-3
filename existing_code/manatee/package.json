@@ -60,5 +60,8 @@
   },
   "scripts": {
     "test": "gulp test"
+  },
+  "dependencies": {
+    "json-export-excel": "^1.0.8"
   }
 }
