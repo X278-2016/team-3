@@ -350,6 +350,7 @@ make sure browsers use the pointer cursor for anchors, even with no href
 	padding: 5px;
 	text-transform: uppercase;
 	display: none;
+    color: white;
 }
 	
 td[id="name"]:hover #onHover{
