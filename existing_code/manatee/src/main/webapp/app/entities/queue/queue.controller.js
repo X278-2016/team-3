@@ -140,13 +140,126 @@
                     }
                     $scope.standardItems = standardItems;
 
-                    $( ".connectedSortable" ).sortable({
+
+                    $scope.arrayPatientTeam = arrayPatientTeam;
+                    $scope.arrayPotentialDischargedPatient = arrayPotentialDischargedPatient;
+                    $scope.arrayIncomingPatient = arrayIncomingPatient;
+                    
+                    $scope.createConnectSortable();
+
+                    // var myVar = setInterval(myTimer, 3000);
+
+                    // function myTimer() {
+                    //     $scope.testtttt();
+                    //     console.log("dfasdfsadf");
+                    //     $scope.arrayPatientTeam = [];
+                    //     $scope.arrayPotentialDischargedPatient = [];
+                    // }
+                });
+            });
+
+
+        };
+
+        $scope.reloadAll = function() {
+            var arrayTeam = [];
+            var arrayPatientTeam = [];
+            var arrayPotentialDischargedPatient = [];
+            var arrayIncomingPatient = [];
+            Team.query(function(result) {
+                for (var i in result) {                    
+                    if(typeof result[i] ==="object")
+                        if ('name' in result[i]) {
+                            arrayTeam.push({'id':result[i]['id'], 'name': result[i]['name'], 'space': get_max_for_today(result[i]), 'progressbarid':'progressbar-'+result[i]['id'] });
+                            // arrayTeam.push({'id':result[i]['id'], 'name': result[i]['name'], 'space': result[i]['maxPatients'], 'progressbarid':'progressbar-'+result[i]['id'] });
+                            arrayPatientTeam.push([]);
+                            // console.log(result[i]['name']);
+                            // console.log(get_max_for_today(result[i]));
+                        }
+                }
+                
+                Queue.query(function(result) {
+                    for (var i in result) {
+                        if(typeof result[i] ==="object")
+                            if ('team' in result[i]) {
+                                if (result[i]['team']!==null && 'name' in result[i]['team']) {
+                                    for (var j in arrayTeam) {
+                                        if (arrayTeam[j]['name'] ==result[i]['team']['name']) {
+                                            var tmp = result[i];
+                                            // console.log(tmp);
+                                            // // check if name equals empty
+                                            // if(tmp['patient'] && tmp['patient']['name']=='') {
+                                            //     tmp['patient']['name']=' ';
+                                            // }
+                                            if (result[i]['timestampInitial']) {
+                                                var initialDate = result[i]['timestampInitial'];
+                                                tmp['timestampSince'] = new Date(initialDate).getTime();
+                                            }
+                                            if (result[i]['timestampFinal']) {
+                                                var finalDate = result[i]['timestampFinal'];
+                                                tmp['timestampDue'] = new Date(finalDate).getTime();
+                                            } else {
+                                                tmp['timestampDue'] = -1;
+                                            }
+                                            if (result[i]['status'] && result[i]['status']=="potentialdischarge") {
+                                                tmp['status'] = 1;
+                                                arrayPotentialDischargedPatient.push(tmp);
+                                            } else {
+                                                tmp['status'] = 0;
+                                            }
+                                            
+                                            arrayPatientTeam[j].push(tmp);
+                                        }
+                                    }
+                                } else {
+                                    arrayIncomingPatient.push(result[i]);
+                                }
+                            }
+                    }
+                    console.log('arrayIncomingPatient', arrayIncomingPatient);
+                    for (var i in arrayTeam) {
+                        // console.log(arrayTeam[i]['space']);
+                        if (arrayTeam[i]['space']==null) {
+                            arrayTeam[i]['occupation'] = 0;
+                            arrayTeam[i]['progressbarText'] = arrayPatientTeam[i].length +"";
+                        } else if (arrayTeam[i]['space']<0) {
+                            arrayTeam[i]['occupation'] = 0;
+                            arrayTeam[i]['progressbarText'] = arrayPatientTeam[i].length +"";
+                        } else if (arrayTeam[i]['space']==0) {
+                            arrayTeam[i]['occupation'] = 0;
+                            arrayTeam[i]['progressbarText'] = arrayPatientTeam[i].length +"/0";
+                        } else {
+                            arrayTeam[i]['occupation'] = arrayPatientTeam[i].length/arrayTeam[i]['space'];
+                            arrayTeam[i]['progressbarText'] = arrayPatientTeam[i].length +"/"+arrayTeam[i]['space'];
+                        }
+                    }
+                    $scope.teams = arrayTeam;
+                    // var standardItems = [];
+                    // for (var i_team = 0; i_team < arrayPatientTeam.length; i_team++) { 
+                    //     standardItems.push({row: Math.floor(i_team/3)*3, col: (i_team%3)*2});
+                    // }
+                    // $scope.standardItems = standardItems;
+
+
+                    $scope.arrayPatientTeam = arrayPatientTeam;
+                    $scope.arrayPotentialDischargedPatient = arrayPotentialDischargedPatient;
+                    $scope.arrayIncomingPatient = arrayIncomingPatient;
+                    
+                    $scope.createConnectSortable();
+                });
+            });
+        //         $scope.$apply();
+        };
+
+        $scope.loadAll();
+
+        $scope.createConnectSortable = function() {
+            $( ".connectedSortable" ).sortable({
                       connectWith: ".connectedSortable",
                       items: "tr",
                       opacity: 0.5,
                       revert: 400,
                       receive: function(event, ui) {
-                        console.log("fadsfasdfsad");
                         var id = $(ui.item).attr('id');
                         var teamID = this.id;
                         if (id=="potentialdischarge-tr" || id==-1) {
@@ -162,24 +275,16 @@
                         // console.log(id +"  receive: "+ teamID);
                       },
                     }).disableSelection();
-                    $scope.arrayPatientTeam = arrayPatientTeam;
-                    $scope.arrayPotentialDischargedPatient = arrayPotentialDischargedPatient;
-                    $scope.arrayIncomingPatient = arrayIncomingPatient;
-                    
-                });
-            });
         };
-
-        $scope.loadAll();
 
         $scope.addMessage = function(message) {
             ChatService.send("send test message");
         };
 
         ChatService.receive().then(null, null, function(message) {
-            // console.log("receive test message");
+            console.log("receive test message");
             // refresh_queue_page(false);
-            $scope.loadAll(function(result) {
+            $scope.reloadAll(function(result) {
                 $scope.activateProgressBar();
             });
         });
@@ -206,11 +311,12 @@
 
         var onSaveFinished = function () {
             $scope.addMessage();
+            $scope.createConnectSortable();
         };
 
-        $scope.activateJQueryUI = function() {
-            activatejQueryUI();
-        }
+        // $scope.activateJQueryUI = function() {
+        //     activatejQueryUI();
+        // }
         $scope.activateProgressBar = function(barID, progressNum, progressText) {
             intialProgressbar('#'+barID, progressNum, progressText);
         }
