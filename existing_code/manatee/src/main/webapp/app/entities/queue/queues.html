@@ -127,8 +127,8 @@
                                     <td style="" id="name"><a ui-sref="patient-detail({id:patientItem.id})">{{patientItem.patient.name}}<span id="onHover">Priority: {{patientItem.patient.priority}}</span></a></td>
                                     <td style=""><a ui-sref="queue.patientedit({id:patientItem.id})">Edit</a></td>
                                 </tr>
-                                <tr style="" id=-1 style="">
-                                <!-- <tr style="" ng-if="arrayPatientTeam[$index].length==0" id=-1 style=""> -->
+                                <!-- <tr style="" id=-1 style=""> -->
+                                <tr style="" ng-if="arrayPatientTeam[$index].length==0" id=-1 style="">
                                     <td style=""></td>
                                     <td style=""><span class="glyphicon glyphicon-info-sign"></span>&nbsp;Drag patients here</td>
                                     <td style=""></td>
