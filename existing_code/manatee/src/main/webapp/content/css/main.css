@@ -106,6 +106,34 @@ html, body {
     height: 100%;
     padding: 5px;
 }
+/*#content-main .queue .queue-content .table-list{
+    position: relative;
+    margin: 10px auto;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    border-collapse: collapse;
+    text-align: center;
+}*/
+/*#content-main .queue .queue-content thead {
+    width: 100%;
+    background-color: green;
+}
+#content-main .queue .queue-content thead tr {
+    width: 100%;
+    background-color: red;
+}
+#content-main .queue .queue-content thead tr th {
+    width: 33%;
+}*/
+/*#content-main .queue .queue-content tbody {
+  width: 100%;
+  float:left;
+}
+#content-main .queue .queue-content thead th,tbody td{
+  width: 100%;
+  float:left;
+}*/
 #content-main .queue .queue-content .title-button {
     color: #ec6841; 
     border: 1px solid #e5e5e5;
@@ -347,10 +375,10 @@ make sure browsers use the pointer cursor for anchors, even with no href
 	border: 1px solid #ccc;
 	font-size: 10px;
 	margin-top: 10px;
-	padding: 5px;
+	/*padding: 1px;*/
 	text-transform: uppercase;
 	display: none;
-    color: white;
+    color: #777;
 }
 	
 td[id="name"]:hover #onHover{

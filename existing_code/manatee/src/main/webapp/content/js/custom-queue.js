@@ -19,29 +19,29 @@
 
 //   });
 
-function activatejQueryUI() {
-  $( ".connectedSortable" ).sortable({
-      connectWith: ".connectedSortable",
-      items: "tr",
-      opacity: 0.5,
-      revert: 400,
-      receive: function(event, ui) {
-        var id = $(ui.item).attr('id');
-        var teamID = this.id;
-        if (id=="potentialdischarge-tr") {
-          ui.sender.sortable("cancel");
-          return;
-        }
-        if (teamID=="potentialdischarge") {
-          ui.sender.sortable("cancel");
-          $('#QueueController').scope().updateStatus(id, "potentialdischarge");
-        } else {
-          $('#QueueController').scope().updateTeam(id, teamID);
-        }
-        // console.log(id +"  receive: "+ teamID);
-      },
-    }).disableSelection();
-}
+// function activatejQueryUI() {
+//   $( ".connectedSortable" ).sortable({
+//       connectWith: ".connectedSortable",
+//       items: "tr",
+//       opacity: 0.5,
+//       revert: 400,
+//       receive: function(event, ui) {
+//         var id = $(ui.item).attr('id');
+//         var teamID = this.id;
+//         if (id=="potentialdischarge-tr" ) {
+//           ui.sender.sortable("cancel");
+//           return;
+//         }
+//         if (teamID=="potentialdischarge") {
+//           ui.sender.sortable("cancel");
+//           $('#QueueController').scope().updateStatus(id, "potentialdischarge");
+//         } else {
+//           $('#QueueController').scope().updateTeam(id, teamID);
+//         }
+//         console.log(id +"  receive: "+ teamID);
+//       },
+//     }).disableSelection();
+// }
 
 // setInterval(refresh_queue_page, 60000);
 // last_update_timestamp = new Date().getTime();

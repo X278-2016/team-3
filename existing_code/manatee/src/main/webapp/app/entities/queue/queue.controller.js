@@ -147,7 +147,7 @@
       receive: function(event, ui) {
         var id = $(ui.item).attr('id');
         var teamID = this.id;
-        if (id=="potentialdischarge-tr") {
+        if (id=="potentialdischarge-tr" || id==-1) {
           ui.sender.sortable("cancel");
           return;
         }
