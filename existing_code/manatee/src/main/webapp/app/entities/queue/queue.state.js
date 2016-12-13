@@ -126,6 +126,30 @@
                 });
             }]
         })
+        .state('queue.myedit', {
+            parent: 'queue',
+            url: '/{id}/delete',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/queue/queue-dialog.html',
+                    controller: 'QueueDialogController',
+                    controllerAs: 'vm',
+                    size: 'md',
+                    resolve: {
+                        entity: ['Queue', function(Queue) {
+                            return Queue.get({id : $stateParams.id});
+                        }]
+                    }
+                }).result.then(function() {
+                    $state.go('queue', null, { reload: true });
+                }, function() {
+                    $state.go('^');
+                });
+            }]
+        })
         .state('queue.delete', {
             parent: 'queue',
             url: '/{id}/delete',

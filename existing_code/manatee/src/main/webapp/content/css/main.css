@@ -136,6 +136,7 @@ html, body {
 }*/
 #content-main .queue .queue-content .title-button {
     color: #ec6841; 
+    background-color: white;
     border: 1px solid #e5e5e5;
     border-radius: 5px;
     font-size: 80%;

@@ -54,7 +54,5 @@
             });
         }
         $scope.loadTeamHistory();
-
-        $scope.tmpvalue = 'array_records';
     }
 })();

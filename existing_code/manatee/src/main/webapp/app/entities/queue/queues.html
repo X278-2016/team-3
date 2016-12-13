@@ -76,7 +76,7 @@
                     <td style="width: 10%">{{incomingPatient.patient.name}}</td>
                     <td style="width: 2%">{{incomingPatient.patient.priority}}</td>
                     <td style="width: 2%">{{incomingPatient.patient.referralSource.name}}</td>
-                    <td style="width: 2%"><button ui-sref="queue.new">
+                    <td style="width: 2%"><button ui-sref="queue.myedit({id:incomingPatient.id})">
                     <span class="glyphicon glyphicon-plus"></span></button></td>
                 </tr>
             </tbody>
@@ -93,11 +93,10 @@
     </div>
 
     <div id="content-main">
-
         
 
         <div class="popup-container"  ng-show="popoverIsVisible" >
-            <div class="central-popup" ng-show="popoverIsVisible" >{{popupContent}}</div>
+            <div class="central-popup"  >{{popupContent}}</div>
         </div>
 
         <div gridster="gridsterOpts">
@@ -108,8 +107,8 @@
                         <!-- <p class="queue-title" ng-mouseover="showPopover(teams[arrayPatientTeam.indexOf(patientTeam)])" ng-mouseleave="hidePopover()">{{teams[arrayPatientTeam.indexOf(patientTeam)].name}}</p> -->
                         <p style="10%">
                             <span class="queue-title">{{teams[$index].name}}</span>
-                            <span class="title-button" ng-mouseover="showPopover_team(teams[$index])" ng-mouseleave="hidePopover()">Details</span>
-                            <span class="title-button" ui-sref="team-detail({id:teams[$index].id})">History</span>
+                            <button class="title-button" ng-mouseover="showPopover_team(teams[$index])" ng-mouseleave="hidePopover()">Details</button>
+                            <button class="title-button" ui-sref="team-detail({id:teams[$index].id})">History</button>
                         </p>
 
                         <div class="table-responsive" style="height: 90%;" >          

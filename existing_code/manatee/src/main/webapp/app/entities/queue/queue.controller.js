@@ -112,7 +112,9 @@
                                         }
                                     }
                                 } else {
-                                    arrayIncomingPatient.push(result[i]);
+                                    if (arrayIncomingPatient.indexOf(result[i]) == -1) {
+                                        arrayIncomingPatient.push(result[i]);
+                                    }
                                 }
                             }
                     }
@@ -212,7 +214,9 @@
                                         }
                                     }
                                 } else {
-                                    arrayIncomingPatient.push(result[i]);
+                                    if (arrayIncomingPatient.indexOf(result[i]) == -1) {
+                                        arrayIncomingPatient.push(result[i]);
+                                    }
                                 }
                             }
                     }
