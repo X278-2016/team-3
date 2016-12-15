@@ -19,8 +19,17 @@ html, body {
 }
 
 .navbar-header img{
-    margin: 7px 30px 0px 10px;
+    margin: 7px 10px 0px 10px;
     height: 40px;
+}
+
+.navbar-header #version-label{
+    color: #ccc;
+    font-size: 80%;
+    position: relative;
+  top: 50%;
+  transform: translateY(50%);
+    float: left;
 }
 
 .content-wrapper {

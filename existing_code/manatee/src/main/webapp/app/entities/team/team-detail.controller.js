@@ -32,12 +32,14 @@
                             if ('team' in entityValue) {
                                 if(typeof entityValue['team'] ==="object") {
                                     var team = entityValue['team'];
-                                    var team_id = team[
-                                    'id']
-                                    if (team_id==entity['id']) {
-                                        if('patient' in entityValue) {
-                                            var patient = entityValue['patient'];
-                                            array_records.push({'patientId': patient['id'], 'patientName': patient['name'], 'lastModifiedDate': entityValue['lastModifiedDate'], 'lastModifiedBy': entityValue['lastModifiedBy'], 'action': audits[i]['action'], 'potentialDischarged': entityValue['status']});
+                                    if (team && 'id' in team) {
+                                        var team_id = team[
+                                        'id']
+                                        if (team_id==entity['id']) {
+                                            if('patient' in entityValue) {
+                                                var patient = entityValue['patient'];
+                                                array_records.push({'patientId': patient['id'], 'patientName': patient['name'], 'lastModifiedDate': entityValue['lastModifiedDate'], 'lastModifiedBy': entityValue['lastModifiedBy'], 'action': audits[i]['action'], 'potentialDischarged': entityValue['status']});
+                                            }
                                         }
                                     }
                                 }

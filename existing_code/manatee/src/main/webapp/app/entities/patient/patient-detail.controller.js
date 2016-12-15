@@ -37,7 +37,8 @@
                                     if (patient_id==entity['id']) {
                                         if('team' in entityValue) {
                                             var team = entityValue['team'];
-                                            array_records.push({'teamId': team['id'], 'teamName': team['name'], 'lastModifiedDate': entityValue['lastModifiedDate'], 'lastModifiedBy': entityValue['lastModifiedBy'], 'action': audits[i]['action'], 'potentialDischarged': entityValue['status']});
+                                            if (team!==null && 'id' in team && 'name' in team && 'name' in team)
+                                                array_records.push({'teamId': team['id'], 'teamName': team['name'], 'lastModifiedDate': entityValue['lastModifiedDate'], 'lastModifiedBy': entityValue['lastModifiedBy'], 'action': audits[i]['action'], 'potentialDischarged': entityValue['status']});
                                         }
                                     }
                                 }
